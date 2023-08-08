@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row mx-auto">
         {%  for product in products %}
-            <div class="my-bottom-margin col-9 col-sm-12 col-md-4 col-lg-4">
+            <div class="my-bottom-margin col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="card text-center" style="width: 18rem;">
                     <a href="{{product.get_url}}">
                         <img class="card-img-top my-img" src="{{product.image.url}}" alt="{{product.name}}" width="600" height="400">
