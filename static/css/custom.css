@@ -1,0 +1,98 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/*** Navbar ***/
+
+.nav-item,
+.dropdown-item {
+    letter-spacing : .2em;
+    font-size : 14px;
+    text-transform : uppercase;
+}
+
+.my-footer {
+    background-color : #f8f9fa;
+    height : 60px
+}
+
+/*** Footer ***/
+
+.my-footer p {
+    padding-top : 20px;
+    font-size : 14px;
+}
+
+/*** Category Page ***/
+
+.my-row {
+    padding-top : 15px;
+}
+
+.mx-auto {
+    color : #000;
+    font-size : 12px;
+}
+
+.my-img {
+    width : 100%;
+    height : 450px;
+}
+
+.my-title {
+    font-size : 16px;
+    letter-transform : uppercase;
+    letter-spacing : .2em;
+}
+
+.my-img-padding {
+    padding : 5px;
+}
+
+.my-bottom-margin {
+    margin-bottom : 10px;
+}
+
+/*** Product Page ***/
+
+.prod-row {
+    padding-top : 15px;
+    padding-bottom : 20px;
+}
+
+.prod-title {
+    font-size : 16px;
+    text-transform : uppercase;
+    letter-spacing : .1em;
+    padding-top : 15px;
+    padding-bottom : 10px;
+}
+
+/*** Search Result Page ***/
+
+.search-text {
+    padding-top : 20px;
+}
+
+/*** Cart Page ***/
+
+.my-table {
+    min-width : 400px;
+    font-size : 14px;
+}
+
+.my-thead {
+    font-weight : normal;
+    text-transform : uppercase;
+    letter-spacing : .2em;
+    background-color : #f8f8fa !important;
+}
+
+.custom_icon {
+    text-decoration : none;
+    color : #868e96 !important;
+}
+
+.custom_btn {
+    margin-top : 5px;
+}

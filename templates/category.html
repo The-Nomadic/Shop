@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    {% if category %}
+        {{category.description|truncatewords:155}}
+    {% else %}
+        Welcome to the Royals
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{category.name}} -- Royals
+    {% else %}
+        Check out our new collections -- Royals
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!--    {% if category %}-->
+<!--        <div>-->
+<!--            <div>-->
+<!--                <p>-->
+<!--                    <a href="{% url 'shopapp:allProdCat' %}"></a>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    {% endif %}-->
+
+    {% if category %}
+
+        <div class="container">
+            <div>
+                <div class="row my-row">
+                    <div class="mx-auto">
+                        <p>
+                            <a href="{% url 'shopapp:allProdCat' %}">Our Product Collection</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mx-auto">
+                <img class="my-img" src="{{category.image.url}}" alt="{{category.name}}" width="600" height="400">
+            </div>
+            <br>
+            <div>
+                <h1 class="text-center my-title">{{category.name}}</h1>
+                <p class="text-justify">{{category.description}}</p>
+            </div>
+            {% else %}
+            <div>
+                <img class="my-img my-img-padding" src="{% static 'img/banner.png' %}" alt="our products" width="800" height="400">
+            </div>
+            <br>
+            <div>
+                <h1 class="text-center my-title">Our Product Collections</h1>
+                <p class="text-justify">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+            </div>
+            {% endif %}
+
+            <div class="container">
+                <div class="row mx-auto">
+                    {%  for product in products.object_list %}
+                        <div class="my-bottom-margin col-9 col-sm-12 col-md-4 col-lg-4">
+                            <div class="card text-center" style="width: 18rem; height: 600px;">
+                                <a href="{{product.get_url}}">
+                                    <img class="card-img-top my-img" src="{{product.image.url}}" alt="{{product.name}}">
+                                </a>
+                                <br>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{product.name}}</h4>
+                                    <p class="card-text">${{product.price}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mx-auto">
+                {% if products.paginator.num_pages > 1 %}
+                    <div class="text-center">
+                        {% for pg in products.paginator.page_range %}
+                            <a href="?page={{pg}}" class="btn btn-sm btn-light {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+        </div>
+
+{% endblock %}

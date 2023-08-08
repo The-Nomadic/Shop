@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    Welcome to the New-Gens
+{% endblock %}
+
+{% block title %}
+        Check out our Search Results -- New-Gens
+{% endblock %}
+
+{% block content %}
+    {% if not cart_items %}
+        <div class="container">
+            <div class="text-center">
+                <br>
+                <h1 class="text-center my-title">
+                    You Cart is <b>empty.</b>
+                </h1>
+                <br>
+                <p class="text-center">
+                    To check out our collections.<a href="{% url 'shopapp:allProdCat' %}">Click Here</a>
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div><br>
+            <div class="text-center">
+                <h1 class="text-center my-title">
+                    Your Cart
+                </h1>
+            </div>
+            <div class="row mx-auto">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 text-center">
+                    <table class="table my-table">
+                        <thead class="my-thead">
+                        <tr>
+                            <th colspan="5">
+                                Your Items
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cart_item in cart_items %}
+                            <tr>
+                                <td>
+                                    <a href="cart_item.product.get_absolute_url">
+                                        <img src="{{cart_item.product.image.url}}" alt="{{cart_item.product.name}}" class="float-left rounded custom_img" width="400" height="500">
+                                    </a>
+                                </td>
+                                <td class="text-left">
+                                    <h6><u>{{cart_item.product.name}}</u></h6>
+                                    <br>
+                                    <p>SKU : {{cart_item.product.id}}</p>
+                                    <p>Price : ${{cart_item.product.price}}</p>
+                                    <p>Qty : {{cart_item.quantity}} X {{cart_item}}</p>
+                                </td>
+                                <td>
+                                    <br><br>
+                                    <b><p>${{cart_item.sub_total}}</p></b>
+                                </td>
+                                {% if cart_item.quantity < cart_item.product.stock %}
+                                <td>
+                                    <p>
+                                        <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a">
+                                            <i class="fa fa-plus custom_icon"></i>
+                                        </a>
+                                    </p>
+                                    &nbsp;
+                                    <p>
+                                        <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a">
+                                            <i class="fa fa-minus custom_icon"></i>
+                                        </a>
+                                    </p>
+                                    &nbsp;
+                                    <p>
+                                        <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon">
+                                            <i class="fa fa-trash custom_icon"></i>
+                                        </a>
+                                    </p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    &nbsp;
+                                    <p>
+                                        <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a">
+                                            <i class="fa fa-minus custom_icon"></i>
+                                        </a>
+                                    </p>
+                                    &nbsp;
+                                    <p>
+                                        <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon">
+                                            <i class="fa fa-trash custom_icon"></i>
+                                        </a>
+                                    </p>
+                                </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
+                    <table class="table my-table">
+                        <thead class="thead my-thead">
+                            <tr>
+                                <th>Check Out</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr>
+                                <td>
+                                    <p>
+                                        Please review your cart before making the <b>payment</b>.
+                                    </p>
+                                    <p>
+                                        Total Price : <strong>${{total}}</strong>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mx-auto">
+                        <a href="{% url 'shopapp:allProdCat' %}" class="btn btn-secondary btn-block custom_btn">
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
